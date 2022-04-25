@@ -29,15 +29,18 @@ function CapturarDatosPaciente(form) {
      return paciente;
 }
 
+// creamos la funcion para que cree los espacios donde se colocara 
 function construirTr(paciente){
     // creamos un nuevo apartado para almacenar ahi la informacion
     var pacienteTr = document.createElement("tr");
-    var nombreTd = document.createElement("td");
-    var alturaTd = document.createElement("td");
-    var pesoTd = document.createElement("td");
-    var gorduraTd = document.createElement("td");
-    var imcTd = document.createElement("td");
-
+    pacienteTr.classList.add("paciente");
+    
+    // adicionamos las clases para mantener la estructura de nuestro html
+    var nombreTd = construirTd(paciente.nombre,"info-nombre");
+    var pesoTd = construirTd(paciente.peso, "info-peso");
+    var alturaTd = construirTd(paciente.altura, "info-altura");
+    var gorduraTd = construirTd(paciente.gordura, "info-gordura");
+    var imcTd = construirTd(paciente.imc, "info-imc");
 
     // asociamos los td y tr a los valores
     nombreTd.textContent = paciente.nombre;
@@ -54,4 +57,14 @@ function construirTr(paciente){
     pacienteTr.appendChild(imcTd);
 
     return pacienteTr
+}
+
+// creamos la funcion de crear td para que sea mas facil el codigo
+function construirTd(dato,className){
+
+    var td = document.createElement("td");
+    td.classList.add(className);
+    td.textContent = dato;
+
+    return td
 }
