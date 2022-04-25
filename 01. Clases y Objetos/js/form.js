@@ -31,12 +31,12 @@ function CapturarDatosPaciente(form) {
 
 function construirTr(paciente){
     // creamos un nuevo apartado para almacenar ahi la informacion
-    pacienteTr = document.createElement("tr");
-    nombreTd = document.createElement("td");
-    alturaTd = document.createElement("td");
-    pesoTd = document.createElement("td");
-    gorduraTd = document.createElement("td");
-    imcTd = document.createElement("td");
+    var pacienteTr = document.createElement("tr");
+    var nombreTd = document.createElement("td");
+    var alturaTd = document.createElement("td");
+    var pesoTd = document.createElement("td");
+    var gorduraTd = document.createElement("td");
+    var imcTd = document.createElement("td");
 
 
     // asociamos los td y tr a los valores
