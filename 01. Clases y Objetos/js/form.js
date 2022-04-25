@@ -1,16 +1,17 @@
 var botonAdisionar = document.querySelector("#adicionar-paciente");
+
+
 botonAdisionar.addEventListener("click", function(event) {
     event.preventDefault(); // evitamos que la pagina se refresque
 
     var form = document.querySelector("#form-adicionar");
-
-    var paciente = CapturarDatosPaciente(form);  
-    
+    var paciente = CapturarDatosPaciente(form);     
     var pacienteTr = construirTr(paciente);
-
     var tabla = document.querySelector("#tabla-pacientes");
     // mandamos a la tabla los tr
     tabla.appendChild(pacienteTr);
+    // hacemos que se borre lo de nuestro form
+    form.reset();
 
 });
 
@@ -34,27 +35,13 @@ function construirTr(paciente){
     // creamos un nuevo apartado para almacenar ahi la informacion
     var pacienteTr = document.createElement("tr");
     pacienteTr.classList.add("paciente");
-    
-    // adicionamos las clases para mantener la estructura de nuestro html
-    var nombreTd = construirTd(paciente.nombre,"info-nombre");
-    var pesoTd = construirTd(paciente.peso, "info-peso");
-    var alturaTd = construirTd(paciente.altura, "info-altura");
-    var gorduraTd = construirTd(paciente.gordura, "info-gordura");
-    var imcTd = construirTd(paciente.imc, "info-imc");
 
-    // asociamos los td y tr a los valores
-    nombreTd.textContent = paciente.nombre;
-    alturaTd.textContent = paciente.altura;
-    pesoTd.textContent = paciente.peso;
-    gorduraTd.textContent = paciente.gordura;
-    imcTd.textContent = paciente.imc;
-
-    // almacenamos los valores al tr 
-    pacienteTr.appendChild(nombreTd);
-    pacienteTr.appendChild(alturaTd);
-    pacienteTr.appendChild(pesoTd);
-    pacienteTr.appendChild(gorduraTd);
-    pacienteTr.appendChild(imcTd);
+    // almacenamos los valores al tr y adicionamos las clases para mantener la estructura de nuestro html
+    pacienteTr.appendChild(construirTd(paciente.nombre,"info-nombre"));
+    pacienteTr.appendChild(construirTd(paciente.altura, "info-altura"));
+    pacienteTr.appendChild(construirTd(paciente.peso, "info-peso"));
+    pacienteTr.appendChild(construirTd(paciente.gordura, "info-gordura"));
+    pacienteTr.appendChild(construirTd(paciente.imc, "info-imc"));
 
     return pacienteTr
 }
