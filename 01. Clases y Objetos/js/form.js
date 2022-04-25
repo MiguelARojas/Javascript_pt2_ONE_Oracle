@@ -52,4 +52,6 @@ function construirTr(paciente){
     pacienteTr.appendChild(pesoTd);
     pacienteTr.appendChild(gorduraTd);
     pacienteTr.appendChild(imcTd);
+
+    return pacienteTr
 }
