@@ -15,18 +15,18 @@ for (var i = 0; i < pacientes.length; i++) {
 
 
     // creamos unas reglas para que no puedan ser valores fuera de rango
-    pesoValido = true;
-    alturaValido = true;
+    pesoValido = validarPeso(peso);
+    alturaValido = validarAltura(altura);
 
 
-    if ((peso <= 0) || (peso > 150)) {
+    if (!pesoValido) {
         console.log("El peso se encuentra fuera de valor");
         tdImc.textContent = "Peso Incorrecto";
         pesoValido = false;
         pacientes[i].classList.add("paciente-incorrecto");
     }
 
-    if ((altura < 0) || (altura > 3.00)) {
+    if (!alturaValido) {
         console.log("La altura se encuentra fuera de valor");
         tdImc.textContent = "Altura Incorrecta";
         alturaValido = false;
@@ -44,4 +44,20 @@ function calcularIMC(peso, altura) {
     // calculamos el IMC
     var IMC = peso / (altura ** 2);
     return IMC.toFixed(2); // toFixed nos ayuda para controlar el numero de decimales
+}
+
+function validarPeso(peso) {
+    if (peso > 0 && peso < 150) {
+        return true
+    }else{
+        return false
+    }
+}
+
+function validarAltura(altura){
+    if (altura > 0 && altura < 3.00){
+        return true
+    }else{
+        return false
+    }
 }
