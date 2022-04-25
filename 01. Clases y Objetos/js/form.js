@@ -22,7 +22,7 @@ botonAdisionar.addEventListener("click", function(event) {
     alturaTd.textContent = paciente.altura;
     pesoTd.textContent = paciente.peso;
     gorduraTd.textContent = paciente.gordura;
-    imcTd.textContent = calcularIMC(paciente.peso, paciente.altura);
+    imcTd.textContent = paciente.imc;
 
     // almacenamos los valores al tr 
     pacienteTr.appendChild(nombreTd);
@@ -42,7 +42,8 @@ function CapturarDatosPaciente(form) {
         nombre: form.nombre.value,
         peso: form.peso.value,
         altura: form.altura.value,
-        gordura: form.gordura.value
+        gordura: form.gordura.value,
+        imc: calcularIMC(form.peso.value, form.altura.value)
      }
 
      // retornamos los valores
