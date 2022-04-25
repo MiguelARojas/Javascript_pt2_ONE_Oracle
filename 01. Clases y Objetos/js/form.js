@@ -4,10 +4,32 @@ botonAdisionar.addEventListener("click", function(event) {
 
     var form = document.querySelector("#form-adicionar");
 
+    var paciente = CapturarDatosPaciente(form);  
+    
+    var pacienteTr = construirTr(paciente);
+
     var tabla = document.querySelector("#tabla-pacientes");
+    // mandamos a la tabla los tr
+    tabla.appendChild(pacienteTr);
 
-    var paciente = CapturarDatosPaciente(form);
+});
 
+function CapturarDatosPaciente(form) {
+     
+    // obtenemos los valores del form mediante una clase
+     var paciente = {
+        nombre: form.nombre.value,
+        peso: form.peso.value,
+        altura: form.altura.value,
+        gordura: form.gordura.value,
+        imc: calcularIMC(form.peso.value, form.altura.value)
+     }
+
+     // retornamos los valores
+     return paciente;
+}
+
+function construirTr(paciente){
     // creamos un nuevo apartado para almacenar ahi la informacion
     pacienteTr = document.createElement("tr");
     nombreTd = document.createElement("td");
@@ -30,22 +52,4 @@ botonAdisionar.addEventListener("click", function(event) {
     pacienteTr.appendChild(pesoTd);
     pacienteTr.appendChild(gorduraTd);
     pacienteTr.appendChild(imcTd);
-
-    // mandamos a la tabla los tr
-    tabla.appendChild(pacienteTr);
-});
-
-function CapturarDatosPaciente(form) {
-     
-    // obtenemos los valores del form mediante una clase
-     var paciente = {
-        nombre: form.nombre.value,
-        peso: form.peso.value,
-        altura: form.altura.value,
-        gordura: form.gordura.value,
-        imc: calcularIMC(form.peso.value, form.altura.value)
-     }
-
-     // retornamos los valores
-     return paciente;
 }
