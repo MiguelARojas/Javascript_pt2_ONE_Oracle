@@ -2,14 +2,11 @@ var botonAdisionar = document.querySelector("#adicionar-paciente");
 botonAdisionar.addEventListener("click", function(event) {
     event.preventDefault(); // evitamos que la pagina se refresque
 
-    // obtenemos los valores del forms
     var form = document.querySelector("#form-adicionar");
-    var nombre = form.nombre.value;
-    var peso = form.peso.value;
-    var altura = form.altura.value;
-    var gordura = form.gordura.value;
 
     var tabla = document.querySelector("#tabla-pacientes");
+
+    var paciente = CapturarDatosPaciente(form);
 
     // creamos un nuevo apartado para almacenar ahi la informacion
     pacienteTr = document.createElement("tr");
@@ -21,11 +18,11 @@ botonAdisionar.addEventListener("click", function(event) {
 
 
     // asociamos los td y tr a los valores
-    nombreTd.textContent = nombre;
-    alturaTd.textContent = altura;
-    pesoTd.textContent = peso;
-    gorduraTd.textContent = gordura;
-    imcTd.textContent = calcularIMC(peso, altura);
+    nombreTd.textContent = paciente.nombre;
+    alturaTd.textContent = paciente.altura;
+    pesoTd.textContent = paciente.peso;
+    gorduraTd.textContent = paciente.gordura;
+    imcTd.textContent = calcularIMC(paciente.peso, paciente.altura);
 
     // almacenamos los valores al tr 
     pacienteTr.appendChild(nombreTd);
@@ -36,6 +33,18 @@ botonAdisionar.addEventListener("click", function(event) {
 
     // mandamos a la tabla los tr
     tabla.appendChild(pacienteTr);
-
-
 });
+
+function CapturarDatosPaciente(form) {
+     
+    // obtenemos los valores del form mediante una clase
+     var paciente = {
+        nombre: form.nombre.value,
+        peso: form.peso.value,
+        altura: form.altura.value,
+        gordura: form.gordura.value
+     }
+
+     // retornamos los valores
+     return paciente;
+}
