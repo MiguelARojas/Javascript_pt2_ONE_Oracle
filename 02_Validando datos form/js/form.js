@@ -66,9 +66,11 @@ function construirTd(dato,className){
 }
 
 function validarPaciente(paciente){
+    var errores = []
     if(!validarPeso(paciente.peso)){
-        return "El peso del paciente es incorrecto";
-    } else {
-        return "";
+        return errores.push("El peso del paciente es incorrecto");
+    }else if(!validarAltura(paciente.altura)){
+        return errores.push("La altura del paciente es incorrecto");
     }
+    return errores;    
 }
