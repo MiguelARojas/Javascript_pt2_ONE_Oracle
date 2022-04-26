@@ -1,7 +1,13 @@
-var pacientes = document.querySelectorAll(".paciente")
+var tabla = document.querySelector("#tabla-pacientes")
 
-pacientes.forEach(function(paciente){
-    paciente.addEventListener("dblclick",function(){
-        this.remove();
-    });
+tabla.addEventListener("dblclick",function(event){
+    event.target.parentNode.remove();
 });
+
+
+// De esta manera no elimina a los pacientes agregados solo los que ya se encuentran por default
+// pacientes.forEach(function(paciente){
+//     paciente.addEventListener("dblclick",function(){
+//         this.remove();
+//     });
+// });
