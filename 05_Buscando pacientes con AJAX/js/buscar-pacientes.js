@@ -5,8 +5,13 @@ botonBuscar.addEventListener("click", function(){
     var xhr =  new XMLHttpRequest;
     xhr.open("GET","https://alura-es-cursos.github.io/api-pacientes/pacientes.json");
     xhr.addEventListener("load",function(){
+        // creamos una variable donde lo conectamos a nuestro span donde se mostrara el mensaje
+        var errorAjax = document.querySelector("#error-ajax");
+
         // haremos validaciones por si no se puede acceder a la url
         if(xhr.status == 200){
+            // si el status es correcto que nos oculte los mensajes
+            errorAjax.classList.add("invisible");
             // almacenamos la informacion obtenida de nuestra api
             var respuesta = xhr.responseText
     
@@ -19,6 +24,8 @@ botonBuscar.addEventListener("click", function(){
                 adicionarPacienteEnLaTabla(paciente);
             })
         }else{
+            // caso contrario me muestre el mensaje si paso un error
+            errorAjax.classList.remove("invisible");
             console.log(xhr.status)
         }
 
