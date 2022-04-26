@@ -1,6 +1,6 @@
 var botonAdisionar = document.querySelector("#adicionar-paciente");
 
-
+// boton de enviar
 botonAdisionar.addEventListener("click", function(event) {
     event.preventDefault(); // evitamos que la pagina se refresque
 
@@ -8,11 +8,10 @@ botonAdisionar.addEventListener("click", function(event) {
     var paciente = CapturarDatosPaciente(form);     
     var pacienteTr = construirTr(paciente);
     
-    var error = validarPaciente(paciente);
+    var errores = validarPaciente(paciente);
     // aqui validamos que el mensaje te error tenga caracteres
-    if(error.length > 0){
-        var mensajeError = document.querySelector("#mensaje-error");
-        mensajeError.textContent = error;
+    if(errores.length > 0){
+        exhibirMensajes(errores)
         return;
     }
 
@@ -73,4 +72,15 @@ function validarPaciente(paciente){
         return errores.push("La altura del paciente es incorrecto");
     }
     return errores;    
+}
+
+function exhibirMensajes(errores){
+    var ul = document.querySelector("#mensajes-errores");
+
+    errores.forEach(function(error){
+        var li = document.createElement("li");
+        li.textContent = error
+        ul.appendChild(li)
+    })
+
 }
