@@ -6,7 +6,6 @@ botonAdisionar.addEventListener("click", function(event) {
 
     var form = document.querySelector("#form-adicionar");
     var paciente = CapturarDatosPaciente(form);     
-    var pacienteTr = construirTr(paciente);
     
     var errores = validarPaciente(paciente);
     // aqui validamos que el mensaje te error tenga caracteres
@@ -15,9 +14,7 @@ botonAdisionar.addEventListener("click", function(event) {
         return
     }
 
-    var tabla = document.querySelector("#tabla-pacientes");
-    // mandamos a la tabla los tr
-    tabla.appendChild(pacienteTr);
+
     // hacemos que se borre lo de nuestro form
     form.reset();
 
@@ -26,6 +23,14 @@ botonAdisionar.addEventListener("click", function(event) {
     mensajesErrores.innerHTML = "";
 
 });
+
+function adicionarPacienteEnLaTabla(paciente){
+    var pacienteTr = construirTr(paciente);
+    var tabla = document.querySelector("#tabla-pacientes");
+    // mandamos a la tabla los tr
+    tabla.appendChild(pacienteTr);
+}
+
 
 function CapturarDatosPaciente(form) {
      
