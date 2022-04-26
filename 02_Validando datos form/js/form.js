@@ -12,7 +12,7 @@ botonAdisionar.addEventListener("click", function(event) {
     // aqui validamos que el mensaje te error tenga caracteres
     if(errores.length > 0){
         exhibirMensajes(errores)
-        return;
+        return
     }
 
     var tabla = document.querySelector("#tabla-pacientes");
@@ -20,6 +20,10 @@ botonAdisionar.addEventListener("click", function(event) {
     tabla.appendChild(pacienteTr);
     // hacemos que se borre lo de nuestro form
     form.reset();
+
+    // cada vez que corregimos un dato nos eliminara el error con el innerHTML
+    var mensajesErrores = document.querySelector("#mensaje-errores")
+    mensajesErrores.innerHTML = "";
 
 });
 
@@ -68,30 +72,34 @@ function validarPaciente(paciente){
     var errores = []
 
     if(paciente.nombre.length == 0){
-        errores.push("El nombre no puede estar vacío")
-    }else if(paciente.peso.length == 0){
-        errores.push("El peso no puede estar vacío")
-    }else if(paciente.altura.length == 0){
-        errores.push("La altura no puede estar vacía")
-    }else if(paciente.gordura.length == 0){
-        errores.push("La gordura no puede estar vacía")
+        errores.push("El nombre no puede estar vacío");
     }
-
+    if(paciente.peso.length == 0){
+        errores.push("El peso no puede estar vacío");
+    }
+    if(paciente.altura.length == 0){
+        errores.push("La altura no puede estar vacía");
+    }
+    if(paciente.gordura.length == 0){
+        errores.push("La gordura no puede estar vacía");
+    }
     if(!validarPeso(paciente.peso)){
-        return errores.push("El peso del paciente es incorrecto");
-    }else if(!validarAltura(paciente.altura)){
-        return errores.push("La altura del paciente es incorrecto");
+        errores.push("El peso del paciente es incorrecto");
+    }
+    if(!validarAltura(paciente.altura)){
+        errores.push("La altura del paciente es incorrecto");
     }
     return errores;    
 }
 
 function exhibirMensajes(errores){
-    var ul = document.querySelector("#mensajes-errores");
+    var ul = document.querySelector("#mensaje-errores");
+    ul.innerHTML = "";
 
     errores.forEach(function(error){
         var li = document.createElement("li");
-        li.textContent = error
-        ul.appendChild(li)
-    })
+        li.textContent = error;
+        ul.appendChild(li);
+    });
 
 }
