@@ -66,6 +66,17 @@ function construirTd(dato,className){
 
 function validarPaciente(paciente){
     var errores = []
+
+    if(paciente.nombre.length == 0){
+        errores.push("El nombre no puede estar vacío")
+    }else if(paciente.peso.length == 0){
+        errores.push("El peso no puede estar vacío")
+    }else if(paciente.altura.length == 0){
+        errores.push("La altura no puede estar vacía")
+    }else if(paciente.gordura.length == 0){
+        errores.push("La gordura no puede estar vacía")
+    }
+
     if(!validarPeso(paciente.peso)){
         return errores.push("El peso del paciente es incorrecto");
     }else if(!validarAltura(paciente.altura)){
