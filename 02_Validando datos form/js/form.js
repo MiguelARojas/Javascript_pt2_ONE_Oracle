@@ -7,6 +7,15 @@ botonAdisionar.addEventListener("click", function(event) {
     var form = document.querySelector("#form-adicionar");
     var paciente = CapturarDatosPaciente(form);     
     var pacienteTr = construirTr(paciente);
+    
+    var error = validarPaciente(paciente);
+    // aqui validamos que el mensaje te error tenga caracteres
+    if(error.length > 0){
+        var mensajeError = document.querySelector("#mensaje-error");
+        mensajeError.textContent = error;
+        return;
+    }
+
     var tabla = document.querySelector("#tabla-pacientes");
     // mandamos a la tabla los tr
     tabla.appendChild(pacienteTr);
@@ -54,4 +63,12 @@ function construirTd(dato,className){
     td.textContent = dato;
 
     return td
+}
+
+function validarPaciente(paciente){
+    if(!validarPeso(paciente.peso)){
+        return "El peso del paciente es incorrecto";
+    } else {
+        return "";
+    }
 }
