@@ -10,16 +10,16 @@ botonAdisionar.addEventListener("click", function(event) {
     var errores = validarPaciente(paciente);
     // aqui validamos que el mensaje te error tenga caracteres
     if(errores.length > 0){
-        exhibirMensajes(errores)
-        return
+        exhibirMensajes(errores);
+        return;
     }
 
-
+    adicionarPacienteEnLaTabla(paciente);
     // hacemos que se borre lo de nuestro form
     form.reset();
 
     // cada vez que corregimos un dato nos eliminara el error con el innerHTML
-    var mensajesErrores = document.querySelector("#mensaje-errores")
+    var mensajesErrores = document.querySelector("#mensaje-errores");
     mensajesErrores.innerHTML = "";
 
 });

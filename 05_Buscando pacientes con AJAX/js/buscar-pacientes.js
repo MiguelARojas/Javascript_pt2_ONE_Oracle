@@ -8,7 +8,15 @@ botonBuscar.addEventListener("click", function(){
         // almacenamos la informacion obtenida de nuestra api
         var respuesta = xhr.responseText
 
+        // convertimos nuestros datos en una lista
         var pacientes = JSON.parse(respuesta);
+
+        // creamos un ciclo forEach para extraer la informacion de paciente por paciente
+        pacientes.forEach(function(paciente){  
+            // llamamos a nuestra funcion para que adicione el paciente a nuestra tabla
+            adicionarPacienteEnLaTabla(paciente);
+        })
+
     });
     xhr.send()
 
