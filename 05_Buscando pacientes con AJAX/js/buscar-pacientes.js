@@ -5,17 +5,24 @@ botonBuscar.addEventListener("click", function(){
     var xhr =  new XMLHttpRequest;
     xhr.open("GET","https://alura-es-cursos.github.io/api-pacientes/pacientes.json");
     xhr.addEventListener("load",function(){
-        // almacenamos la informacion obtenida de nuestra api
-        var respuesta = xhr.responseText
+        // haremos validaciones por si no se puede acceder a la url
+        if(xhr.status == 200){
+            // almacenamos la informacion obtenida de nuestra api
+            var respuesta = xhr.responseText
+    
+            // convertimos nuestros datos en una lista
+            var pacientes = JSON.parse(respuesta);
+    
+            // creamos un ciclo forEach para extraer la informacion de paciente por paciente
+            pacientes.forEach(function(paciente){  
+                // llamamos a nuestra funcion para que adicione el paciente a nuestra tabla
+                adicionarPacienteEnLaTabla(paciente);
+            })
+        }else{
+            console.log(xhr.status)
+        }
 
-        // convertimos nuestros datos en una lista
-        var pacientes = JSON.parse(respuesta);
 
-        // creamos un ciclo forEach para extraer la informacion de paciente por paciente
-        pacientes.forEach(function(paciente){  
-            // llamamos a nuestra funcion para que adicione el paciente a nuestra tabla
-            adicionarPacienteEnLaTabla(paciente);
-        })
 
     });
     xhr.send()
