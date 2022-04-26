@@ -12,9 +12,11 @@ campoFiltro.addEventListener("input", function () {
             var paciente = pacientes[i]
             var tdNombre = paciente.querySelector(".info-nombre");
             var nombre = tdNombre.textContent;
+            // se esta usando expresion regulares para comparar el nombre y el entorno no diferencie entre mayusculas y minusculas
+            var expresion = new RegExp(this.value, "i")
 
             // hacemos una comprobacion si encuentra el nombre
-            if (nombre != this.value) {
+            if (!expresion.test(nombre)) {
                 paciente.classList.add("invisible");
             } else {
                 paciente.classList.remove("invisible");
